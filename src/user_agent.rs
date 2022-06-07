@@ -1,5 +1,11 @@
 pub mod config;
 pub mod error;
+pub mod device;
+pub mod os;
+pub mod os_variant;
+pub mod variant;
+pub mod browser;
+pub mod browser_variant;
 
 use std::{path::PathBuf, fs::File, io::BufReader, marker::PhantomData};
 
