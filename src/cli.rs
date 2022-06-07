@@ -26,12 +26,12 @@ impl Cli {
     }
 }
 
-#[derive(ArgEnum, Clone, Debug)]
+#[derive(ArgEnum, Clone, Debug, Copy)]
 #[clap(rename_all="snake_case")]
 pub enum UserAgentType {
     Desktop,
     Mobile,
-    Googlebot2,
+    Tablet,
 }
 
 impl From<self::UserAgentType> for UATC {
@@ -39,7 +39,7 @@ impl From<self::UserAgentType> for UATC {
         match value {
             UserAgentType::Desktop => Self::Desktop,
             UserAgentType::Mobile => Self::Mobile,
-            UserAgentType::Googlebot2 => Self::Googlebot2,
+            UserAgentType::Tablet => Self::Tablet,
         }
     }
 }
@@ -49,7 +49,7 @@ impl From<UATC> for UserAgentType {
         match value {
             UATC::Desktop => Self::Desktop,
             UATC::Mobile => Self::Mobile,
-            UATC::Googlebot2 => Self::Googlebot2,
+            UATC::Tablet => Self::Tablet,
         }
     }
 }
