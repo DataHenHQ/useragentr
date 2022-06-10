@@ -46,6 +46,30 @@ pub struct UserAgent {
 
 
 impl UserAgent {
+    /// create a new UserAgent
+    /// 
+    /// # Arguments:
+    /// 
+    /// path: specify the path to the user agent json file. If [`None`] is specified, then the default one will be used.
+    /// 
+    /// # Examples
+    ///
+    /// Basic usage:
+    ///
+    /// ```
+    /// let ua = UserAgent::new(None).unwrap();
+    /// let result = ua.generate_ua(&Type::Desktop).unwrap();
+    /// let re = Regex::new(r"Mozilla/5.0").unwrap();  
+    /// assert_eq!(re.is_match(&result), true);
+    /// ```
+    /// 
+    /// To use a custom user agent config json file:
+    /// ``` 
+    /// let ua = UserAgent::new(Some(PathBuf::from("/path/to/your/ua-config.json"))).unwrap();
+    /// let result = ua.generate_ua(&Type::Desktop).unwrap();
+    /// let re = Regex::new(r"Mozilla/5.0").unwrap();  
+    /// assert_eq!(re.is_match(&result), true);
+    /// ```
     pub fn new(path: Option<PathBuf>) -> Result<Self, error::Error> {
         Ok(Self{
             dummy: PhantomData{},
@@ -87,6 +111,8 @@ impl UserAgent {
 
 #[cfg(test)]
 mod tests {
+    use std::path::PathBuf;
+
     use crate::user_agent::{UserAgent, Type};
     use regex::Regex;
 
@@ -98,4 +124,5 @@ mod tests {
         
         assert_eq!(re.is_match(&result), true);
     }
+
 }
