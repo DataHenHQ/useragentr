@@ -83,3 +83,19 @@ impl UserAgent {
         &self.config
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use crate::user_agent::{UserAgent, Type};
+    use regex::Regex;
+
+    #[test]
+    fn it_generates_desktop_ua() {
+        let ua = UserAgent::new(None).unwrap();
+        let result = ua.generate_ua(&Type::Desktop).unwrap();
+        let re = Regex::new(r"Mozilla/5.0").unwrap();
+        
+        assert_eq!(re.is_match(&result), true);
+    }
+}
