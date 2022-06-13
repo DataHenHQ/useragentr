@@ -5,10 +5,11 @@ use std::path::PathBuf;
 
 #[derive(Args)]
 pub struct Generate {
-    #[clap(arg_enum, help = "What kind of user-agent to generate.")]
+    #[clap(value_parser, arg_enum, help = "What kind of user-agent to generate.")]
     pub user_agent_type: UserAgentType,
 
     #[clap(
+        value_parser,
         long,
         short = 'n',
         help = "How many user agent strings to generate.",
@@ -17,6 +18,7 @@ pub struct Generate {
     pub count: u64,
 
     #[clap(
+        value_parser,
         long,
         help = "Path to the user agent config path. If not specified, the default built-in user agent combinations will be used."
     )]
