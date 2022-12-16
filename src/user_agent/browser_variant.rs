@@ -6,7 +6,7 @@ use super::variant::{DataAdder, Variant};
 use serde::Deserialize;
 
 // BrowserVariant represents an user agent configuration for a specific browser variant
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct BrowserVariant {
     pub probability: f64,
     pub id: String,

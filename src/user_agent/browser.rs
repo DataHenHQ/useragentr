@@ -6,7 +6,7 @@ use super::Probability;
 use serde::Deserialize;
 
 // Browser's user agent configuration
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct Browser {
     pub probability: f64,
     pub id: String,

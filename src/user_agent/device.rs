@@ -4,7 +4,7 @@ use serde::Deserialize;
 use std::collections::HashMap;
 
 // Device's user agent configuration
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct Device {
     pub id: String,
     pub oses: Vec<OS>,

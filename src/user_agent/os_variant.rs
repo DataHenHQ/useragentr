@@ -4,7 +4,7 @@ use serde::Deserialize;
 use std::collections::HashMap;
 
 // OSVariant represents an user agent configuration for a specific operating system variant
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct OSVariant {
     pub id: String,
     pub probability: f64,

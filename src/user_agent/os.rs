@@ -6,7 +6,7 @@ use super::os_variant::OSVariant;
 use super::Probability;
 
 // Operating system's user agent configuration
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct OS {
     pub id: String,
     pub probability: f64,

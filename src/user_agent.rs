@@ -10,17 +10,27 @@ pub mod browser_variant;
 use std::{path::PathBuf, fs::File, io::BufReader, marker::PhantomData, fmt};
 
 use config::Config;
+use serde::{Serialize, Deserialize};
 
 use crate::user_agent::config::DeviceGetter;
 
 use self::config::Configurator;
 
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Type {
+    #[serde(rename="desktop")]
     Desktop,
+    #[serde(rename="mobile")]
     Mobile,
+    #[serde(rename="tablet")]
     Tablet,
+}
+
+impl Default for Type{
+    fn default() -> Self {
+        Type::Desktop
+    }
 }
 
 impl fmt::Display for Type {
@@ -38,8 +48,9 @@ pub trait Probability {
     fn get_probability(&self) -> f64;
 }
 
+#[derive(Clone, Debug)]
 pub struct UserAgent {
-    dummy: PhantomData<bool>,
+    dummy: PhantomData<bool>, 
     config: Config,
 }
 
@@ -105,6 +116,13 @@ impl UserAgent {
 
     pub fn config(&self) -> &Config {
         &self.config
+    }
+}
+
+
+impl Default for UserAgent{
+    fn default() -> Self {
+        UserAgent::new(None).unwrap()
     }
 }
 
